@@ -1,6 +1,6 @@
 
 // ==UserScript==
-// @name         Dynamic Single-Select Dropdown Injector for Jira - comments
+// @name         dropdown-select-sa-logwork-jira
 // @namespace    http://tampermonkey.net/
 // @version      0.3
 // @description  Inject a single-select dropdown list to update a work description in Jira on selection
