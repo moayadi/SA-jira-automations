@@ -1,1 +1,1 @@
-# SA-jira-automatations
+# SA-jira-automations
