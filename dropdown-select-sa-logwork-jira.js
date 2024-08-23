@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         inline-data-entry-sa-logwork-jira-with-templates
+// @name         inline-data-entry-sa-logwork-jira-with-summary
 // @namespace    http://tampermonkey.net/
-// @version      1.3
-// @description  Inject an inline expansion for data entry to update work description in Jira, with template management and clear functionality
+// @version      1.4
+// @description  Inject an inline expansion for data entry to update work description in Jira, with template management, clear functionality, and activity summary
 // @author       Moayad Ismail (modified by Assistant)
 // @match        https://hashicorp.atlassian.net/*
 // @match        https://hashicorp-sandbox-778.atlassian.net/*
@@ -77,10 +77,27 @@
         activityEntriesTextarea.focus();
     }
 
+    function parseActivities(activityEntries) {
+        const entries = activityEntries.split('\n');
+        let totalHours = 0;
+
+        entries.forEach(entry => {
+            const match = entry.match(/:\s*(\d+(?:\.\d+)?)h/);
+            if (match) {
+                totalHours += parseFloat(match[1]);
+            }
+        });
+
+        return totalHours;
+    }
+
     function updateWorkDescription(activityEntries, activityComment) {
         const workDescription = document.getElementsByClassName("ua-chrome ProseMirror pm-table-resizing-plugin");
         if (workDescription.length > 0) {
-            let updatedText = "Activity Entry:\n";
+            const totalHours = parseActivities(activityEntries);
+
+            let updatedText = `Activity Logged: Total Hours: ${totalHours}h, Comment: ${activityComment}\n\n`;
+            updatedText += "Activity Entry:\n";
             updatedText += activityEntries.split('\n').map((entry, index, array) =>
                 index === array.length - 1 ? entry : entry + ','
             ).join('\n');
