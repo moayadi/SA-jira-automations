@@ -6,7 +6,7 @@
 // @author       Moayad Ismail
 // @match        https://hashicorp.atlassian.net/*
 // @match        https://hashicorp-sandbox-778.atlassian.net/*
-// @updateURL    https://raw.githubusercontent.com/moayadi/SA-jira-automations/main/sa-logwork.meta.js
-// @downloadURL  https://raw.githubusercontent.com/moayadi/SA-jira-automations/main/sa-logwork.user.js
+// @updateURL    https://raw.githubusercontent.com/moayadi/SA-jira-automations/sa-automations-firefox/sa-logwork.meta.js
+// @downloadURL  https://raw.githubusercontent.com/moayadi/SA-jira-automations/sa-automations-firefox/sa-logwork.user.js
 // @grant        none
 // ==/UserScript==
