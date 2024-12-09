@@ -155,7 +155,7 @@
 
         // Find the correct input field using the provided method
         function findTimeSpentInput() {
-            let timeSpentHeading = Array.from(document.querySelectorAll('h2'))
+            let timeSpentHeading = Array.from(document.querySelectorAll('h3'))
             .find(el => el.textContent.trim() === 'Time spent');
             if (timeSpentHeading) {
                 let inputContainer = timeSpentHeading.closest('[data-component-selector="jira-issue-field-heading-field-wrapper"]')
