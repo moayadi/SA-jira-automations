@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         sa-logwork-jira
 // @namespace    http://tampermonkey.net/
-// @version      1.5
+// @version      1.6
 // @description  Inject an inline expansion for data entry to update work description in Jira, with template management, clear functionality, activity summary, and total hours input
 // @author       Moayad Ismail
 // @match        https://hashicorp.atlassian.net/*
@@ -124,9 +124,17 @@
         return parseFloat(totalHours.toFixed(2)); // Return with 2 decimal places
     }
 
+    function getBrowserType() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        if (userAgent.indexOf('firefox') > -1) {
+            return 'ua-firefox ProseMirror pm-table-resizing-plugin';
+        } else {
+            return 'ua-chrome ProseMirror pm-table-resizing-plugin';
+        }
+    }
 
     function updateWorkDescription(activityEntries, activityComment) {
-        const workDescription = document.getElementsByClassName("ua-chrome ProseMirror pm-table-resizing-plugin");
+        const workDescription = document.getElementsByClassName(getBrowserType());
         if (workDescription.length > 0) {
             const totalHours = parseActivities(activityEntries);
 
