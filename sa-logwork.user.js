@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         sa-logwork-jira
 // @namespace    http://tampermonkey.net/
-// @version      1.6
+// @version      1.7
 // @description  Inject an inline expansion for data entry to update work description in Jira, with template management, clear functionality, activity summary, and total hours input
 // @author       Moayad Ismail
 // @match        https://hashicorp.atlassian.net/*
@@ -163,15 +163,11 @@
 
         // Find the correct input field using the provided method
         function findTimeSpentInput() {
-            let timeSpentHeading = Array.from(document.querySelectorAll('h3'))
-            .find(el => el.textContent.trim() === 'Time spent');
-            if (timeSpentHeading) {
-                let inputContainer = timeSpentHeading.closest('[data-component-selector="jira-issue-field-heading-field-wrapper"]')
-                .querySelector('[data-ds--text-field--container="true"]');
-
-                if (inputContainer) {
-                    return inputContainer.querySelector('input[data-ds--text-field--input="true"]');
-                }
+            const input = document.querySelector('input#timelog-textfield-Time\\ spent');
+            if (input) {
+                return input;
+            } else {
+                console.error('Time spent input field not found');
             }
             return null;
         }
