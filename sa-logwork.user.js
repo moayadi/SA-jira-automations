@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         sa-logwork-jira
 // @namespace    http://tampermonkey.net/
-// @version      1.7
+// @version      1.7.1
 // @description  Inject an inline expansion for data entry to update work description in Jira, with template management, clear functionality, activity summary, and total hours input
 // @author       Moayad Ismail
 // @match        https://hashicorp.atlassian.net/*
@@ -323,11 +323,7 @@
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                mutation.addedNodes.forEach(function(node) {
-                    if (node.nodeType === Node.ELEMENT_NODE && node.matches('.css-1xdxiey')) {
-                        addButton();
-                    }
-                });
+                addButton();
             }
         });
     });
